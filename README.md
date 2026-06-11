@@ -1,69 +1,51 @@
 # AI Algorithm Case Builder
 
-一个本地算法竞赛测试数据生成工具。你可以上传或粘贴 Markdown 题面，选择 GPT / Claude / DeepSeek / NewAPI / OpenAI-compatible 接口，让 AI 直接修改现有的 `makedata.cpp` 和 `std.cpp`，随后自动编译并生成测试点到 `捏数据/cases/`。
+一个本地算法竞赛测试数据生成小工具：粘贴题面，AI 自动改 `makedata.cpp` 和 `std.cpp`，然后生成 `cases` 测试点。
 
-## 功能
-
-- 本地网页界面，默认运行在 `http://localhost:5173`
-- 支持 Markdown 题面、样例代码块、表格和 LaTeX 公式
-- 支持 OpenAI、DeepSeek、Claude、NewAPI 和自定义兼容接口
-- NewAPI 配置 JSON 可直接粘贴到 API Key 输入框
-- 自动获取兼容接口可用模型
-- 直接修改原有 `makedata.cpp` 和 `std.cpp`
-- 生成完成后可一键复制 `std.cpp`
-- 生成 `cases/*.in` 和 `cases/*.out`
+配合 Hydro 平台使用效果极佳。
 
 ## 启动
 
-macOS 可以双击：
+双击：
 
 ```text
 启动AI界面.command
 ```
 
-或在终端运行：
+## 使用流程
 
-```bash
-npm start
-```
+1. 打开界面后，粘贴或上传 Markdown 格式的题面。
+2. 填入你的 API Key；如果是 NewAPI 配置 JSON，可以整段直接粘贴。
+3. 工具会自动识别模型服务，并自动获取可用模型。
+4. 点击“测试连接”，确认 API 可以正常使用。
+5. 点击“生成代码并运行”。
+6. 程序会直接修改原有的：
+   ```text
+   捏数据/makedata.cpp
+   捏数据/std.cpp
+   ```
+7. 修改完成后会自动编译运行，把测试点放到：
+   ```text
+   捏数据/cases/
+   ```
+8. 把 `cases` 文件夹上传到 Hydro。
+9. 如果需要标准程序，点击“复制 std.cpp”即可复制当前标准代码。
 
-然后打开：
+## 工作逻辑
 
-```text
-http://localhost:5173
-```
+这个工具不会凭空新建一套代码文件，而是读取现有的 `makedata.cpp` 和 `std.cpp`，让 AI 在原文件基础上修改。
 
-## API 配置
+生成测试点时，会先在临时位置生成完整数据，再发布到 `cases` 文件夹，避免上传时读到半成品。
 
-可以在网页里直接填写 API Key，也可以创建 `.env.local`：
-
-```bash
-export AI_PROVIDER="openai"
-export OPENAI_API_KEY="your_api_key"
-export OPENAI_MODEL="gpt-4.1"
-```
-
-NewAPI / OpenAI-compatible 示例：
-
-```bash
-export AI_PROVIDER="newapi"
-export NEWAPI_BASE_URL="https://your-newapi-host/v1"
-export NEWAPI_API_KEY="your_api_key"
-export NEWAPI_MODEL="your_model"
-```
-
-`.env.local` 已加入 `.gitignore`，不要提交真实 API Key。
-
-## 数据目录
+## 目录
 
 ```text
 捏数据/
-├── makedata.cpp
-├── std.cpp
-├── loop.sh
-├── loop.bat
-├── loop.command
-└── cases/
+├── makedata.cpp    # 数据生成器
+├── std.cpp         # 标准程序
+├── loop.sh         # macOS / Linux 手动生成脚本
+├── loop.bat        # Windows 手动生成脚本
+└── cases/          # 生成后的测试点
 ```
 
-`cases/` 是生成目录，仓库只保留空目录标记，不提交生成数据。
+真实 API Key 不要提交到 GitHub。

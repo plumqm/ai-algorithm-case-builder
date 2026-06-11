@@ -1,0 +1,15 @@
+.env.local
+node_modules/
+.DS_Store
+*.o
+捏数据/.DS_Store
+捏数据/build/
+捏数据/backups/
+捏数据/.cases.tmp-*/
+捏数据/.cases.old-*/
+捏数据/makedata
+捏数据/std
+捏数据/makedata.exe
+捏数据/std.exe
+捏数据/cases/*
+!捏数据/cases/.gitkeep

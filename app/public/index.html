@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>算法题数据生成器</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="app-head">
+        <div>
+          <h1>算法题数据生成器</h1>
+          <p id="status">正在检查本地服务...</p>
+        </div>
+        <div class="count-control">
+          <label for="count">测试组数</label>
+          <input id="count" type="number" min="1" max="50" value="15" />
+        </div>
+      </header>
+
+      <section class="workspace">
+        <div class="editor-panel">
+        <div class="topbar">
+          <div>
+            <h2>题面</h2>
+            <p>Markdown 原文</p>
+          </div>
+        </div>
+
+        <div class="upload-row">
+          <label class="file-button" for="statementFile">上传 Markdown 题面</label>
+          <input id="statementFile" type="file" accept=".md,.markdown,.txt,.text" />
+          <span id="fileName">也可以直接粘贴 Markdown 原文</span>
+        </div>
+
+        <div class="ai-settings">
+          <label>
+            <span>模型服务</span>
+            <select id="provider">
+              <option value="auto">自动识别</option>
+              <option value="openai">GPT / OpenAI</option>
+              <option value="deepseek">DeepSeek</option>
+              <option value="anthropic">Claude / Anthropic</option>
+              <option value="newapi">NewAPI 中转</option>
+              <option value="custom">自定义兼容接口</option>
+            </select>
+          </label>
+          <label>
+            <span>模型名</span>
+            <input id="model" type="text" value="gpt-4.1" />
+          </label>
+          <label>
+            <span>API Key</span>
+            <input id="apiKey" type="password" autocomplete="off" placeholder="粘贴对应平台的 Key" />
+          </label>
+          <label>
+            <span>Base URL</span>
+            <input id="baseUrl" type="text" placeholder="自定义接口时填写" />
+          </label>
+        </div>
+
+        <textarea id="problemStatement" spellcheck="false" placeholder="在这里粘贴 Markdown 题面原文，例如包含 # 题目、## 输入格式、## 输出格式、``` 样例代码块、表格和数据范围。"></textarea>
+
+        <div class="actions">
+          <button id="copyStdButton" type="button" class="ghost" disabled>复制 std.cpp</button>
+          <button id="testButton" type="button" class="ghost">测试连接</button>
+          <button id="generateButton" type="button">生成代码并运行</button>
+          <button id="clearButton" type="button" class="ghost">清空</button>
+        </div>
+        </div>
+
+      <aside class="result-panel">
+        <div class="result-head">
+          <h2>运行结果</h2>
+          <span id="badge" class="badge idle">待提交</span>
+        </div>
+        <pre id="resultLog">提交后会在这里显示 AI 说明、编译日志和生成的 cases 文件。</pre>
+      </aside>
+      </section>
+    </main>
+
+    <script src="/main.js"></script>
+  </body>
+</html>

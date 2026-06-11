@@ -48,4 +48,3 @@
 └── cases/          # 生成后的测试点
 ```
 
-真实 API Key 不要提交到 GitHub。

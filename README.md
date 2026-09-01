@@ -15,7 +15,7 @@
 ## 使用流程
 
 1. 打开界面后，粘贴或上传 Markdown 格式的题面。
-2. 填入你的 API Key；如果是 NewAPI 配置 JSON，可以整段直接粘贴。
+2. 填入你的 API Key 。
 3. 工具会自动识别模型服务，并自动获取可用模型。
 4. 点击“测试连接”，确认 API 可以正常使用。
 5. 点击“生成代码并运行”。
@@ -46,5 +46,14 @@
 ├── loop.sh         # macOS / Linux 手动生成脚本
 ├── loop.bat        # Windows 手动生成脚本
 └── cases/          # 生成后的测试点
+```
+## 效果图
+<img width="1258" height="807" alt="image" src="https://github.com/user-attachments/assets/d74d7924-e9e5-478a-812f-f692d162c381" />
+
+特殊要求可以在最前面指出，如：
+```text
+1.不要用万能头
+2.不要把题目本身样例放进去
+3.样例范围合理控制，不要出现很多小范围测试点，容易被骗分
 ```
 
